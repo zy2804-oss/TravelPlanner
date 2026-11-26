@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TravelPlanner</title>
+  <link rel="stylesheet" href="styles.css?v=side-by-side-1">
+  <script src="script.js?v=side-by-side-1" defer></script>
+</head>
+<body>
+  <header class="topbar"><a href="#" class="brand">TravelPlanner</a><nav><button id="editView" class="quiet">Plan a trip</button><button id="summaryView" class="quiet">Itinerary</button><button id="saveTrip">Save trip</button></nav></header>
+  <main id="planner">
+    <section class="intro"><p class="eyebrow">A LITTLE SPACE FOR YOUR NEXT ADVENTURE</p><h1>Where will you go next?</h1><p>Discover places you love, then make room for them in each day.</p></section>
+    <section aria-labelledby="citiesTitle"><div class="section-head"><h2 id="citiesTitle">Explore destinations</h2><span>Open a city to explore its highlights</span></div><div id="cities" class="cities"></div></section>
+    <section class="panel"><div class="section-head"><h2>Your trip</h2><span id="tripLength">Choose your destination and dates</span></div><div class="trip-fields"><label>Destination<input id="destination" readonly placeholder="Choose a city above"></label><label>Start date<input id="startDate" type="date"></label><label>End date<input id="endDate" type="date"></label><button id="createDays">Create daily plan</button></div><p id="dateError" class="error" role="alert"></p><p class="hint">Both travel dates count toward your trip. A same-day trip is one day. Activities within your updated date range are kept.</p></section>
+    <details class="panel"><summary>Accommodation <span>Add this later</span></summary><div class="details-body"><div id="hotelFields" class="fields"></div></div></details>
+    <div id="planningWorkspace" class="planning-workspace">
+    <section id="wishlistPanel" class="panel library-panel" hidden><div class="section-head"><div><p class="eyebrow">YOUR WISHLIST</p><h2 id="wishlistTitle">Places to go, things to do</h2></div><button id="addLibrary">＋ New activity</button></div><p class="hint">Your destination highlights are ready. Drag a card into a day or use its calendar icon. Scheduled cards turn gray.</p><div id="library" class="library"></div></section>
+    <section class="daily-planner" aria-label="Daily itinerary"><div class="section-head"><div><p class="eyebrow">MAKE ROOM FOR THE MOMENTS</p><h2>Make each day your own</h2></div><label class="toggle"><input type="checkbox" id="showTimes"> Add times</label></div><p class="hint">Choose activities and arrange their order first. Add times when you are ready. Drag activities between days.</p><div id="days" class="days"></div></section>
+    </div>
+    <footer>Edits save automatically in this browser. Save trip opens your complete itinerary.</footer>
+  </main>
+  <main id="itinerary" hidden><div class="section-head"><div><p class="eyebrow">YOUR TRAVEL ITINERARY</p><h1 id="summaryTitle">My itinerary</h1><p id="summaryDates"></p></div><button id="backToEdit" class="quiet">Back to editing</button></div><div id="summaryContent"></div></main>
+  <dialog id="cityDialog"><button class="close" data-close="cityDialog" aria-label="Close">×</button><div id="cityDetail"></div></dialog>
+  <dialog id="activityDialog"><form id="activityForm"><div class="section-head"><h2 id="activityHeading">New activity</h2><button type="button" class="quiet" data-close="activityDialog">Cancel</button></div><label>Activity or attraction name<input name="title" required maxlength="100" placeholder="e.g. A walk in Central Park"></label><label>Category<select name="category"><option>Attraction</option><option>Dining</option><option>Activity</option><option>Shopping</option><option>Other</option></select></label><label>Location<input name="place" maxlength="200" placeholder="Address or place name"></label><label>Notes<textarea name="notes" rows="3" maxlength="1000" placeholder="Ideas, reservations, things to remember..."></textarea></label><button type="submit">Save activity</button></form></dialog>
+  <dialog id="assignDialog"><form id="assignForm"><h2>Which day?</h2><label>Date<select id="assignDate" required></select></label><div class="actions"><button type="button" class="quiet" data-close="assignDialog">Cancel</button><button type="submit">Add to day</button></div></form></dialog>
+  <dialog id="mealDialog"><form id="mealForm"><div class="section-head"><h2 id="mealHeading">Plan a meal</h2><button type="button" class="quiet" data-close="mealDialog">Close</button></div><p class="hint">Changes save automatically as you type. Close when you are done.</p><label>Restaurant name<input name="restaurant" maxlength="100" placeholder="Where would you like to eat?"></label><label>Restaurant address<input name="address" maxlength="250" placeholder="Restaurant address"></label><label>Meal time<input name="time" type="time"></label><div class="actions"><button type="button" id="clearMeal" class="quiet">Clear meal</button><button type="submit">Done</button></div></form></dialog>
+  <dialog id="savedDialog"><h2>Saved to your itinerary</h2><p>Your accommodation and daily plans are ready.</p><button id="openSaved">View full itinerary</button></dialog>
+  <p id="storageError" class="storage-error" role="alert" hidden>Unable to save in this browser. Check storage permissions; your latest changes have not been saved.</p>
+</body>
+</html>
